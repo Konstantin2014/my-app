@@ -1,16 +1,8 @@
-import { useState, useEffect } from "react";
+import { useWeather } from "../Hooks/useWeather";
 import "./card.css";
-import { API_KEY } from "../Settings/settings";
 
 export const Card = ({ city }) => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&&lang=ua`
-    )
-      .then((res) => res.json())
-      .then((json) => setData(json));
-  }, []);
+  const data = useWeather(city);
   if (!data) {
     return null;
   }

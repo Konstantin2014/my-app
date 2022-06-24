@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./App.css";
 
 import { Input } from "./Input/input";
-import { Card } from "./Card/card";
+import { CardList } from "./CardList/cardList";
 
 function App() {
   const [cityesList, setCityesList] = useState([]);
@@ -11,11 +11,7 @@ function App() {
   return (
     <div className="Main">
       <Input setCityesList={setCityesList} />
-      <div className="CardList">
-        {cityesList.map((city) => (
-          <Card key={city} city={city} />
-        ))}
-      </div>
+      <CardList cityesList={cityesList} />
     </div>
   );
 }

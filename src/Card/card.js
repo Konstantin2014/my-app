@@ -1,18 +1,39 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "./card.css";
+import { API_KEY } from "../Settings/settings";
 
 export const Card = ({ city }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&&lang=ua`
+    )
+      .then((res) => res.json())
+      .then((json) => setData(json));
+  }, []);
+  if (!data) {
+    return null;
+  }
+
+  const { name, weather, main } = data;
+  const { description, icon } = weather[0];
+  const { temp, humidity, feels_like } = main;
+
   return (
     <div className="Card">
       <div className="CardInfo">
-        <img className="CardIcon" src="" alt="icon" />
-        <p className="CardCity">{city}</p>
-        <p className="CardDescription">Cloudy</p>
-        <p className="CardTemperature">20</p>
+        <img
+          className="CardIcon"
+          src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt="icon"
+        />
+        <p className="CardCity">{name}</p>
+        <p className="CardDescription">{description}</p>
+        <p className="CardTemperature">{temp.toFixed()}</p>
       </div>
       <ul className="CardItem">
-        <li className="CardHumidity">Humidity: 15</li>
-        <li className="CardFeelsLike">Feels Like: 19</li>
+        <li className="CardHumidity">Вологість повітря : {humidity}</li>
+        <li className="CardFeelsLike">Відчувається, як : {feels_like}</li>
       </ul>
     </div>
   );

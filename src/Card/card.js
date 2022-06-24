@@ -1,12 +1,12 @@
 import React from "react";
 import "./card.css";
 
-export const Card = () => {
+export const Card = ({ city }) => {
   return (
     <div className="Card">
       <div className="CardInfo">
         <img className="CardIcon" src="" alt="icon" />
-        <p className="CardCity">New york</p>
+        <p className="CardCity">{city}</p>
         <p className="CardDescription">Cloudy</p>
         <p className="CardTemperature">20</p>
       </div>

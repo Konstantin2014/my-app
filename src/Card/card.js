@@ -2,7 +2,7 @@ import { useWeather } from "../Hooks/useWeather";
 import "./card.css";
 import { memo } from "react";
 
-export const Card = memo(({ city }) => {
+export const Card = memo(({ city, dispatch }) => {
   const data = useWeather(city);
   if (!data) {
     return null;
@@ -12,8 +12,17 @@ export const Card = memo(({ city }) => {
   const { description, icon } = weather[0];
   const { temp, humidity, feels_like } = main;
 
+  const handleOnClick = () => {
+    dispatch({ type: "DEL_CITY", payload: city });
+  };
+
   return (
     <div className="Card">
+      <div className="CardDelete">
+        <button className="CardButton" onClick={handleOnClick}>
+          x
+        </button>
+      </div>
       <div className="CardInfo">
         <img
           className="CardIcon"

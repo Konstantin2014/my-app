@@ -13,6 +13,12 @@ const reduser = (state, action) => {
       };
       return newState;
     }
+    case "DEL_CITY": {
+      const oldArray = state.cityesList;
+      const newArray = oldArray.filter((el) => el !== action.payload);
+      return { ...state, cityesList: newArray };
+    }
+
     default:
       return initialState;
   }

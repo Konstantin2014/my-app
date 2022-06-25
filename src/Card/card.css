@@ -14,6 +14,15 @@
   margin-left: 0;
 }
 
+.CardDelete {
+  display: flex;
+  justify-content: flex-end;
+}
+.CardButton {
+  background: #dfcafd;
+  border: none;
+}
+
 .CardInfo {
   display: flex;
   flex-direction: column;

@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import "./input.css";
 
-export const Input = ({ setCityesList }) => {
+export const Input = ({ dispatch }) => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
 
@@ -10,7 +10,12 @@ export const Input = ({ setCityesList }) => {
   };
 
   const handleOnClick = () => {
-    setCityesList((currentArray) => [...currentArray, inputValue]);
+    if (inputValue.length) {
+      dispatch({
+        type: "ADD_CITY",
+        payload: inputValue,
+      });
+    }
     setInputValue("");
     inputRef.current.focus();
   };

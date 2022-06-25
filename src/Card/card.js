@@ -1,7 +1,8 @@
 import { useWeather } from "../Hooks/useWeather";
 import "./card.css";
+import { memo } from "react";
 
-export const Card = ({ city }) => {
+export const Card = memo(({ city }) => {
   const data = useWeather(city);
   if (!data) {
     return null;
@@ -29,4 +30,4 @@ export const Card = ({ city }) => {
       </ul>
     </div>
   );
-};
+});
